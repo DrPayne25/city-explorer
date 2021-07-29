@@ -8,6 +8,9 @@ class App extends React.Component{ //Creates the App.js as a React component
     this.state = {
       city: '',
       renderLatLon: false,
+      renderCityName: false,
+      lat: 0, // These two lines are gravy using it to keep track of lat and lon from the start
+      lon: 0,
 
     }
   }
@@ -20,7 +23,14 @@ class App extends React.Component{ //Creates the App.js as a React component
     e.preventDefault();
     let submitResults = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.city}&format=json`)
 
-    console.log(submitResults);
+    console.log(submitResults.data[0]);
+    this.setState({
+      renderCityName: true,
+      renderLatLon: true,
+      city: submitResults.data[0].display_name,
+      lat: submitResults.data[0].lat,
+      lon: submitResults.data[0].lon,
+    })
   }
 
 
@@ -31,9 +41,10 @@ class App extends React.Component{ //Creates the App.js as a React component
       <h1>Explore the City</h1>
       <form onSubmit={this.handleSubmit}>
         <input onChange={this.handleChange}/>
-        <button>Which City Today?</button>
+        <button>Explore!</button>
       </form>
-      {this.state.renderLatLon ? <h4>Hello World</h4>: ''}
+      {this.state.renderCityName ? <h2>City Name: {this.state.city}</h2>: ''}
+      {this.state.renderLatLon ? <h4>Latitude: {this.state.lat}, Longitude: {this.state.lon}</h4>: ''}
       </>
     )
   }
