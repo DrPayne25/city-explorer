@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
+import Main from './Main.js'
 
 class App extends React.Component{ //Creates the App.js as a React component
   constructor(props){ //Constructor that sets that allows you to adjust and change the starting state
@@ -22,8 +23,6 @@ class App extends React.Component{ //Creates the App.js as a React component
   handleSubmit = async (e) => {
     e.preventDefault();
     let submitResults = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.city}&format=json`)
-
-    console.log(submitResults.data[0]);
     this.setState({
       renderCityName: true,
       renderLatLon: true,
@@ -35,17 +34,16 @@ class App extends React.Component{ //Creates the App.js as a React component
 
 
   render() { 
-    console.log(this.state);
     return (
-      <>
-      <h1>Explore the City</h1>
-      <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange}/>
-        <button>Explore!</button>
-      </form>
-      {this.state.renderCityName ? <h2>City Name: {this.state.city}</h2>: ''}
-      {this.state.renderLatLon ? <h4>Latitude: {this.state.lat}, Longitude: {this.state.lon}</h4>: ''}
-      </>
+      <Main 
+      handleChange={this.handleChange}
+      handleSubmit={this.handleSubmit}
+      renderCityName={this.state.renderCityName}
+      renderLatLon={this.state.renderLatLon}
+      city={this.state.city}
+      lat={this.state.lat}
+      lon={this.state.lon}
+      />
     )
   }
 }
