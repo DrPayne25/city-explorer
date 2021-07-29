@@ -9,11 +9,14 @@ A site that allows users to enter a location name then have a map appear using a
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 1. create a repo on github no files 
-2. 
-3. npx create-react-app title of your choosing
+2. npx create-react-app title of your choosing
+3. link those two by following the instructions shown on github
 4. remove all unneeded files from the react app and change title
-5. npm install axios react-bootstrap@next bootstrap@5.0.2 version just needs to match the guide you are using.
-6. 
+5. Update README
+6. npm install axios react-bootstrap@next bootstrap@5.0.2 version just needs to match the guide you are using.
+7. add .env to your .gitignore file
+8. create a LocationIQ account and get an api key to use should be the free tier
+9. create a .env file for react apps it must follow this format REACT_APP_TITLE_OF_YOUR_CHOOSING=APIKEY
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
@@ -32,8 +35,8 @@ Name of feature: Set up React
 
 Estimate of time needed to complete: 30min
 
-Start time: 9:30
+Start time: 9:30 and 7:10
 
-Finish time: _____
+Finish time: 10 and  7:46
 
-Actual time needed to complete: _____
+Actual time needed to complete: 1hr
