@@ -16,7 +16,7 @@ A site that allows users to enter a location name then have a map appear using a
 6. npm install axios react-bootstrap@next bootstrap@5.0.2 version just needs to match the guide you are using.
 7. add .env to your .gitignore file
 8. create a LocationIQ account and get an api key to use should be the free tier
-9. create a .env file for react apps it must follow this format REACT_APP_TITLE_OF_YOUR_CHOOSING=APIKEY
+9. create a .env file for react apps it must follow this format REACT_APP_(TITLE_OF_YOUR_CHOOSING)=APIKEY
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
@@ -40,3 +40,23 @@ Start time: 9:30 and 7:10
 Finish time: 10 and  7:46
 
 Actual time needed to complete: 1hr
+
+Name of feature: Location 
+
+Estimate of time needed to complete: 1hr
+
+Start time: 7:46
+
+Finish time: 9:32
+
+Actual time needed to complete: 1hr 50min
+
+Name of feature: Map
+
+Estimate of time needed to complete: 2hr
+
+Start time: 5:02
+
+Finish time: 6:21
+
+Actual time needed to complete: 1hr 20min
