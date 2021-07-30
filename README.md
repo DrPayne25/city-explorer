@@ -1,8 +1,8 @@
 # City Explorer
 
-**Author**: Alex Payne 
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission) 
-**Site Link**: https://app.netlify.com/sites/alexs-city-explorer/overview 
+**Author**: Alex Payne  
+**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)  
+**Site Link**: https://app.netlify.com/sites/alexs-city-explorer/overview  
 
 ## Overview
 A site that allows users to enter a location name then have a map appear using an API call to return lat an lon locations and then render a map of those values using that same API data. 
