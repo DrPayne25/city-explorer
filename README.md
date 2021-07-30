@@ -7,6 +7,9 @@
 ## Overview
 A site that allows users to enter a location name then have a map appear using an API call to return lat an lon locations and then render a map of those values using that same API data. 
 
+## UMI
+![umi](/src/img/umi.png)
+
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 1. create a repo on github no files 
