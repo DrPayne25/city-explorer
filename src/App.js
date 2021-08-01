@@ -3,13 +3,14 @@ import './App.css';
 import axios from 'axios';
 import Main from './Main.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container'
 
 class App extends React.Component { //Creates the App.js as a React component
   constructor(props) { //Constructor that sets that allows you to adjust and change the starting state
     super(props);
     this.state = {
       city: '',
+      weather: [],
       renderLatLon: false,
       renderCityName: false,
       renderCityImg: false,
@@ -18,11 +19,19 @@ class App extends React.Component { //Creates the App.js as a React component
       lon: 0,
       imgSrc: "",
       errorMessage: '',
+      displayWeather: false,
     }
   }
 
   handleChange = (e) => { //Handles the value of City as the user inputs it
     this.setState({ city: e.target.value })
+  }
+
+  getData = async () => {
+    let weatherData = await axios.get(`http://localhost:3001/weather?city=${this.state.city}`)    
+    this.setState({
+      weather: weatherData.data
+    })
   }
 
   handleSubmit = async (e) => {
@@ -36,6 +45,7 @@ class App extends React.Component { //Creates the App.js as a React component
         renderLatLon: true,
         renderCityImg: true,
         renderError: false,
+        displayWeather: true,
         city: submitResults.data[0].display_name,
         lat: submitResults.data[0].lat,
         lon: submitResults.data[0].lon,
@@ -61,16 +71,20 @@ class App extends React.Component { //Creates the App.js as a React component
         <Main
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+          getData={this.getData}
           renderCityImg={this.state.renderCityImg}
           renderCityName={this.state.renderCityName}
           renderLatLon={this.state.renderLatLon}
           renderError={this.state.renderError}
+          displayWeather={this.state.displayWeather}
+          weather={this.state.weather}
           city={this.state.city}
           lat={this.state.lat}
           lon={this.state.lon}
           imgSrc={this.state.imgSrc}
           errorMessage={this.state.errorMessage}
         />
+        {/* <Weather /> */}
       </Container>
     )
   }
