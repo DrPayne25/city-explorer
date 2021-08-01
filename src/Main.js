@@ -4,10 +4,11 @@ import Button from 'react-bootstrap/Button'
 import "./Main.css"
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
-// import Card from 'react-bootstrap/Card'
+import Weather from './Weather'
 
 
 class Main extends React.Component {
+
   render () {
     return(
       <Container>
@@ -15,14 +16,15 @@ class Main extends React.Component {
         <Form class="city_form" onSubmit={this.props.handleSubmit}>
           <Form.Group>
             <Form.Label>City Name</Form.Label>
-          <Form.Control as='input' onChange={this.props.handleChange} />
+          <Form.Control as='input' onChange={this.props.handleChange} placeholder='Enter a city Seattle, Paris, or Amman will show special info!' />
           </Form.Group>
-          <Button id='city_button' variant='primary' type='submit'>Explore!</Button>
+          <Button onClick={this.props.getData} class='button' id='city_button' variant='primary' type='submit'>Explore!</Button>
         </Form>
           {this.props.renderCityName ? <h3>City Name: {this.props.city}</h3>: ''}
           {this.props.renderLatLon ? <h5>Latitude: {this.props.lat}, Longitude: {this.props.lon}</h5>: ''}
           {this.props.renderError ? <h5>{this.props.errorMessage}</h5> : ''}
-          {this.props.renderCityImg ? <Image src={this.props.imgSrc} alt={this.props.city} rounded/> : ''}
+          {this.props.displayWeather ? <Weather weather={this.props.weather}/>: ''}
+          {this.props.renderCityImg ? <Image id='CityMap' src={this.props.imgSrc} alt={this.props.city} rounded/> : ''}
       </Container>
     )
   }
