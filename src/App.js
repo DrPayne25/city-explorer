@@ -10,6 +10,7 @@ class App extends React.Component { //Creates the App.js as a React component
     super(props);
     this.state = {
       city: '',
+      movieCity: '',
       weather: [],
       renderLatLon: false,
       renderCityName: false,
@@ -27,10 +28,27 @@ class App extends React.Component { //Creates the App.js as a React component
     this.setState({ city: e.target.value })
   }
 
-  getData = async () => {
-    let weatherData = await axios.get(`http://localhost:3001/weather?city=${this.state.city}`)    
+  getWeatherData = async () => {
+    let weatherData = await axios.get(`http://localhost:3001/weather`,{
+      params: {
+        lat: this.state.lat,
+        lon: this.state.lon,
+      }
+    }) 
     this.setState({
-      weather: weatherData.data
+      weather: weatherData.data,
+    })
+  }
+
+  getMovieData = async () => {
+    let movieData = await axios.get(`http://localhost:3001/movies`, {
+      params: {
+        city: this.state.city
+      }
+    }) 
+    console.log(movieData);
+    this.setState({
+      movieCity: movieData.data
     })
   }
 
@@ -58,10 +76,11 @@ class App extends React.Component { //Creates the App.js as a React component
         renderCityName: false,
         renderLatLon: false,
         renderCityImg: false,
-        errorMessage: `Error Occured: ${error.response.status}, ${error.response.data.error}`,
+        errorMessage: `Error Occurred: ${error.response.status}, ${error.response.data.error}`,
       })
     }
-
+    this.getWeatherData();
+    this.getMovieData();
   }
 
 
