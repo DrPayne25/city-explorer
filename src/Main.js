@@ -17,7 +17,7 @@ class Main extends React.Component {
         <Form class="city_form" onSubmit={this.props.handleSubmit}>
           <Form.Group>
             <Form.Label>City Name</Form.Label>
-          <Form.Control as='input' onChange={this.props.handleChange} placeholder='Enter a city Seattle, Paris, or Amman will show special info!' />
+          <Form.Control as='input' onChange={this.props.handleChange} placeholder='Enter a city!' />
           </Form.Group>
           <Button class='button' id='city_button' variant='primary' type='submit'>Explore!</Button>
         </Form>
