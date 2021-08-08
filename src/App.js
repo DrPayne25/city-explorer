@@ -31,26 +31,24 @@ class App extends React.Component { //Creates the App.js as a React component
   }
 
   getWeatherData = async () => {
-    let weatherData = await axios.get(`http://localhost:3001/weather?lat=${this.state.lat}&lon=${this.state.lon}`
-    // {
-    //   params: {
-    //     lat: this.state.lat,
-    //     lon: this.state.lon,
-    //   }
-    // }
-    ) 
+    let weatherData = await axios.get(`http://localhost:3001/weather`,{
+      params: {
+        lat: this.state.lat,
+        lon: this.state.lon,
+      }
+    })  
     this.setState({
       weather: weatherData.data,
     })
   }
 
   getMovieData = async () => {
-    let movieData = await axios.get(`http://localhost:3001/movies?city=${this.state.city}` 
-    // {
-    //   params: {
-    //     city: this.state.city
-    //   }
-    // }
+    let movieData = await axios.get(`http://localhost:3001/movies`, 
+    {
+      params: {
+        city: this.state.city
+      }
+    }
     ) 
     this.setState({
       movieData: movieData.data
