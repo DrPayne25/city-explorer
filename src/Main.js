@@ -4,7 +4,8 @@ import Button from 'react-bootstrap/Button'
 import "./Main.css"
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
-import Weather from './Weather'
+import Weather from './Weather.js'
+import Movies from './Movies.js'
 
 
 class Main extends React.Component {
@@ -18,13 +19,14 @@ class Main extends React.Component {
             <Form.Label>City Name</Form.Label>
           <Form.Control as='input' onChange={this.props.handleChange} placeholder='Enter a city Seattle, Paris, or Amman will show special info!' />
           </Form.Group>
-          <Button onClick={this.props.getData} class='button' id='city_button' variant='primary' type='submit'>Explore!</Button>
+          <Button class='button' id='city_button' variant='primary' type='submit'>Explore!</Button>
         </Form>
           {this.props.renderCityName ? <h3>City Name: {this.props.city}</h3>: ''}
           {this.props.renderLatLon ? <h5>Latitude: {this.props.lat}, Longitude: {this.props.lon}</h5>: ''}
           {this.props.renderError ? <h5>{this.props.errorMessage}</h5> : ''}
-          {this.props.displayWeather ? <Weather weather={this.props.weather}/>: ''}
-          {this.props.renderCityImg ? <Image id='CityMap' src={this.props.imgSrc} alt={this.props.city} rounded/> : ''}
+          {this.props.displayWeather ? <Weather weather={this.props.weather}/>: `${this.props.errorMessage}`}
+          {this.props.renderCityImg ? <Image id='CityMap' src={this.props.mapImgSrc} alt={this.props.city} rounded/> : ''}
+          {this.props.displayMovie ? <Movies movieData={this.props.movieData}/>: `${this.props.errorMessage}`}
       </Container>
     )
   }

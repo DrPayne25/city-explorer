@@ -10,16 +10,19 @@ class App extends React.Component { //Creates the App.js as a React component
     super(props);
     this.state = {
       city: '',
+      cityResult: '',
+      movieData: [],
       weather: [],
       renderLatLon: false,
       renderCityName: false,
       renderCityImg: false,
       renderError: false,
+      displayWeather: false,
+      displayMovie: false,
       lat: 0, // These two lines are gravy using it to keep track of lat and lon from the start
       lon: 0,
-      imgSrc: "",
+      mapImgSrc: " ",
       errorMessage: '',
-      displayWeather: false,
     }
   }
 
@@ -27,41 +30,62 @@ class App extends React.Component { //Creates the App.js as a React component
     this.setState({ city: e.target.value })
   }
 
-  getData = async () => {
-    let weatherData = await axios.get(`http://localhost:3001/weather?city=${this.state.city}`)    
+  getWeatherData = async () => {
+    let weatherData = await axios.get(`http://localhost:3001/weather`,{
+      params: {
+        lat: this.state.lat,
+        lon: this.state.lon,
+      }
+    })  
     this.setState({
-      weather: weatherData.data
+      weather: weatherData.data,
+    })
+  }
+
+  getMovieData = async () => {
+    let movieData = await axios.get(`http://localhost:3001/movies`, 
+    {
+      params: {
+        city: this.state.city
+      }
+    }
+    ) 
+    this.setState({
+      movieData: movieData.data
     })
   }
 
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let submitResults = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.city}&format=json`)
-      let imageSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${submitResults.data[0].lat},${submitResults.data[0].lon}&zoom=12`
+      let locationIQSubmitResults = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.city}&format=json`)
+      let mapImgSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${locationIQSubmitResults.data[0].lat},${locationIQSubmitResults.data[0].lon}&zoom=12`
 
       this.setState({
         renderCityName: true,
         renderLatLon: true,
         renderCityImg: true,
-        renderError: false,
         displayWeather: true,
-        city: submitResults.data[0].display_name,
-        lat: submitResults.data[0].lat,
-        lon: submitResults.data[0].lon,
-        imgSrc: imageSrc
+        displayMovie: true,
+        renderError: false,
+        cityResults: locationIQSubmitResults.data[0].display_name,
+        lat: locationIQSubmitResults.data[0].lat,
+        lon: locationIQSubmitResults.data[0].lon,
+        mapImgSrc: mapImgSrc
       })
     } catch (error) {
       console.log('my error', error.response);
       this.setState({
         renderError: true,
         renderCityName: false,
+        displayWeather: false,
         renderLatLon: false,
         renderCityImg: false,
-        errorMessage: `Error Occured: ${error.response.status}, ${error.response.data.error}`,
+        errorMessage: `Error Occurred: ${error.response.status}, ${error.response.data.error}`,
       })
     }
-
+    this.getWeatherData();
+    this.getMovieData();
   }
 
 
@@ -77,14 +101,15 @@ class App extends React.Component { //Creates the App.js as a React component
           renderLatLon={this.state.renderLatLon}
           renderError={this.state.renderError}
           displayWeather={this.state.displayWeather}
+          displayMovie={this.state.displayMovie}
           weather={this.state.weather}
-          city={this.state.city}
+          movieData={this.state.movieData}
+          city={this.state.cityResults}
           lat={this.state.lat}
           lon={this.state.lon}
-          imgSrc={this.state.imgSrc}
+          mapImgSrc={this.state.mapImgSrc}
           errorMessage={this.state.errorMessage}
         />
-        {/* <Weather /> */}
       </Container>
     )
   }
