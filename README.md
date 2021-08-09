@@ -21,6 +21,7 @@ A site that allows users to enter a location name then have a map appear using a
 7. add .env to your .gitignore file
 8. create a LocationIQ account and get an api key to use should be the free tier
 9. create a .env file for react apps it must follow this format REACT_APP_(TITLE_OF_YOUR_CHOOSING)=APIKEY
+10. Refer to the .env_sample for what keys are needed and how to format
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
