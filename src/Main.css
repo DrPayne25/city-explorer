@@ -8,5 +8,6 @@
 }
 
 .carousel-caption {
-  background-color: black;
+  text-align: center;
+  background-color: rgba(160, 160, 160, 0.5);
 }

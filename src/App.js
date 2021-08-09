@@ -9,18 +9,18 @@ class App extends React.Component { //Creates the App.js as a React component
   constructor(props) { //Constructor that sets that allows you to adjust and change the starting state
     super(props);
     this.state = {
-      city: '',
-      cityResult: '',
-      movieData: [],
-      weather: [],
-      renderLatLon: false,
-      renderCityName: false,
-      renderCityImg: false,
-      renderError: false,
-      displayWeather: false,
-      displayMovie: false,
-      lat: 0, // These two lines are gravy using it to keep track of lat and lon from the start
-      lon: 0,
+      city: '', //set an initial state for city as an empty string
+      cityResult: '', //set an initial state for cityResult as an empty string
+      movieData: [], //set an initial state for movieData as an empty array
+      weather: [], //set an initial state for weather as an empty array
+      renderLatLon: false, //set an initial state for renderLatLon as false
+      renderCityName: false, //set an initial state for renderCityName as false
+      renderCityImg: false, //set an initial state for renderCityImg as false
+      renderError: false, //set an initial state for renderError as false
+      displayWeather: false, //set an initial state for displayWeather as false
+      displayMovie: false, //set an initial state for displayMovie as false
+      lat: 0, //set an initial state for lat as 0
+      lon: 0, //set an initial state for lon as 0
       mapImgSrc: " ",
       errorMessage: '',
     }
