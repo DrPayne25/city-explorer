@@ -31,7 +31,7 @@ class App extends React.Component { //Creates the App.js as a React component
   }
 
   getWeatherData = async () => {
-    let weatherData = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather`,
+    let weatherData = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather`,{
     // let weatherData = await axios.get(`${process.env.REACT_APP_BACKEND_URL_LOCAL}/weather`,{
       params: {
         lat: this.state.lat,
@@ -41,7 +41,7 @@ class App extends React.Component { //Creates the App.js as a React component
     this.setState({
       weather: weatherData.data,
     })
-  }
+
 
   getMovieData = async () => {
     let movieData = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies`,
