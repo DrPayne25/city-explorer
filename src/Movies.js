@@ -11,7 +11,6 @@ class Movies extends React.Component {
         alt={movie.overview}
         />
         <Carousel.Caption>
-          {console.log(movie)}
           <h3>Title: {movie.title}</h3>
           <p>{movie.title} was released on {movie.released_on}.</p>
         </Carousel.Caption>

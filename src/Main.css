@@ -11,3 +11,7 @@
   text-align: center;
   background-color: rgba(160, 160, 160, 0.5);
 }
+
+#list-group {
+  margin-bottom: 10px;
+}

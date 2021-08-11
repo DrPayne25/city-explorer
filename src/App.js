@@ -31,8 +31,8 @@ class App extends React.Component { //Creates the App.js as a React component
   }
 
   getWeatherData = async () => {
-    let weatherData = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather`,
-    // let weatherData = await axios.get(`${process.env.REACT_APP_BACKEND_URL_LOCAL}/weather`,
+    // let weatherData = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather`,
+    let weatherData = await axios.get(`${process.env.REACT_APP_BACKEND_URL_LOCAL}/weather`,
     {
       params: {
         lat: this.state.lat,
@@ -46,8 +46,8 @@ class App extends React.Component { //Creates the App.js as a React component
 
 
   getMovieData = async () => {
-    let movieData = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies`,
-    // let movieData = await axios.get(`${process.env.REACT_APP_BACKEND_URL_LOCAL}/movies`, 
+    // let movieData = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies`,
+    let movieData = await axios.get(`${process.env.REACT_APP_BACKEND_URL_LOCAL}/movies`, 
     {
       params: {
         city: this.state.city
@@ -78,7 +78,6 @@ class App extends React.Component { //Creates the App.js as a React component
         mapImgSrc: mapImgSrc
       })
     } catch (error) {
-      console.log('my error', error.response);
       this.setState({
         renderError: true,
         renderCityName: false,
